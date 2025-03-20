@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="未缚之壤前传"
+run/main_scene="res://control.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://c2kjbbj1s7q8t"
 
 [autoload]
 
@@ -22,7 +23,7 @@ RuakeLayer="*res://addons/ruake/ruake/ruake_layer.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_core_system/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/ruake/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/ruake/plugin.cfg")
 
 [input]
 
