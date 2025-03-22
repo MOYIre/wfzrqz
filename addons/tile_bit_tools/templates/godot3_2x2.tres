@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://dghepno5umy5j"]
 
-[ext_resource type="Script" path="res://addons/tile_bit_tools/core/template_bit_data.gd" id="1_03oml"]
+[ext_resource type="Script" uid="uid://1qe7db1u8led" path="res://addons/tile_bit_tools/core/template_bit_data.gd" id="1_03oml"]
 
 [resource]
 script = ExtResource("1_03oml")
