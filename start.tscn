@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=4 uid="uid://d2tf4euxwmail"]
+[gd_scene load_steps=9 format=4 uid="uid://d2tf4euxwmail"]
 
-[ext_resource type="Script" uid="uid://b82k7drk0ndnj" path="res://start.gd" id="1_4a3qj"]
 [ext_resource type="Texture2D" uid="uid://f06oxl3fto8w" path="res://Res/regions/DarkRoad.png" id="1_y5hus"]
 [ext_resource type="Script" uid="uid://cn5fymid7l8t3" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_oiuna"]
 [ext_resource type="Script" uid="uid://da2vnyhunoysx" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_4a3qj"]
@@ -81,7 +80,6 @@ transition = 0
 ease = 2
 
 [node name="场景" type="Node2D"]
-script = ExtResource("1_4a3qj")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAASABQAAAAAAAAAAAATABQAAAAAAAAAAAAUABQAAAAAAAAAAAAVABQAAAAAAAAAAAAWABQAAAAAAAAAAAAXABQAAAAAAAAAAAAYABQAAAAAAAAAAAAZABQAAAAAAAAAAAAaABQAAAAAAAAAAAAbABQAAAAAAAAAAAAcABQAAAAAAAAAAAAdABQAAAAAAAAAAAAeABQAAAAAAAAAAAAfABQAAAAAAAAAAAAfABUAAAAAAAAAAAAgABUAAAAAAAAAAAAhABUAAAAAAAAAAAAiABUAAAAAAAAAAAAjABUAAAAAAAAAAAAiABYAAAAAAAAAAAAhABYAAAAAAAAAAAAgABYAAAAAAAAAAAAfABYAAAAAAAAAAAAeABYAAAAAAAAAAAAdABYAAAAAAAAAAAAcABYAAAAAAAAAAAAbABYAAAAAAAAAAAAaABUAAAAAAAAAAAAZABUAAAAAAAAAAAAYABUAAAAAAAAAAAAXABUAAAAAAAAAAAAWABUAAAAAAAAAAAAVABUAAAAAAAAAAAAUABUAAAAAAAAAAAARABQAAAAAAAAAAAAQABQAAAAAAAAAAAATABUAAAAAAAAAAAATABYAAAAAAAAAAAAUABYAAAAAAAAAAAAVABYAAAAAAAAAAAAWABYAAAAAAAAAAAAXABYAAAAAAAAAAAAYABYAAAAAAAAAAAAZABYAAAAAAAAAAAAaABYAAAAAAAAAAAAcABUAAAAAAAAAAAAdABUAAAAAAAAAAAAeABUAAAAAAAAAAAAbABUAAAAAAAAAAAARABUAAAAAAAAAAAAQABUAAAAAAAAAAAASABUAAAAAAAAAAAASABYAAAAAAAAAAAARABYAAAAAAAAAAAAQABYAAAAAAAAAAAAgABQAAAAAAAAAAAAhABQAAAAAAAAAAAAiABQAAAAAAAAAAAAjABQAAAAAAAAAAAAjABYAAAAAAAAAAAA=")
@@ -101,5 +99,5 @@ position = Vector2(574, 324)
 script = ExtResource("3_4a3qj")
 tween_resource = SubResource("Resource_q6a3c")
 
-[node name="Player" parent="." instance=ExtResource("5_oiuna")]
-position = Vector2(173, 302)
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_oiuna")]
+position = Vector2(180, 307)

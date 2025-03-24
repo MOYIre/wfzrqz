@@ -1,13 +1,18 @@
 extends CharacterBody2D
 
 @export var speed: float = 150.0
-@export var turn_smoothness: float = 10.0  # 转身平滑度（值越大越平滑）
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@export var turn_smoothness: float = 20.0
+@onready var animated_sprite: AnimatedSprite2D
 
-var _target_direction := Vector2.DOWN  # 目标方向（用于平滑转身）
-var _current_direction := Vector2.DOWN  # 当前方向（插值用）
+var _target_direction := Vector2.DOWN
+var _current_direction := Vector2.DOWN
 
 func _ready() -> void:
+	# 动态查找 AnimatedSprite2D 节点
+	for child in get_children():
+		if child is AnimatedSprite2D:
+			animated_sprite = child
+			break
 	if animated_sprite == null:
 		push_error("错误：AnimatedSprite2D 节点未找到！请检查场景树。")
 		return
@@ -24,11 +29,17 @@ func _physics_process(delta: float) -> void:
 	# 平滑插值当前方向
 	_current_direction = _current_direction.lerp(_target_direction, turn_smoothness * delta)
 	
-	# 根据当前方向播放动画
+	# 根据当前方向播放动画（优先垂直方向）
 	if animated_sprite != null:
-		if abs(_current_direction.x) > abs(_current_direction.y):
-			animated_sprite.play("right" if _current_direction.x > 0 else "left")
+		if abs(_current_direction.y) > abs(_current_direction.x):
+			if _current_direction.y > 0:
+				animated_sprite.play("down")
+			else:
+				animated_sprite.play("up")
 		else:
-			animated_sprite.play("down" if _current_direction.y > 0 else "up")
+			if _current_direction.x > 0:
+				animated_sprite.play("right")
+			else:
+				animated_sprite.play("left")
 	
 	move_and_slide()
