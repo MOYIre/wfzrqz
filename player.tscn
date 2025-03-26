@@ -65,11 +65,11 @@ animations = [{
 script = ExtResource("1_kbped")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(93, 37)
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_b26j0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(93, 37)
+position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_n7ghd")
 animation = &"down"
 autoplay = "down"

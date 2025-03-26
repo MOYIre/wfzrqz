@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="未缚之壤前传"
+config/version="beta"
 run/main_scene="uid://d2tf4euxwmail"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="uid://c8ej4ncbhk6ih"
@@ -19,6 +20,11 @@ config/icon="uid://c8ej4ncbhk6ih"
 
 CoreSystem="*res://addons/godot_core_system/source/core_system.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+
+[display]
+
+window/size/viewport_width=327
+window/size/viewport_height=184
 
 [editor_plugins]
 
@@ -66,4 +72,4 @@ toggle_ruake={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

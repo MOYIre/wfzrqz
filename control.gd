@@ -14,9 +14,9 @@ func _ready() -> void:
 			animated_sprite = child
 			break
 	if animated_sprite == null:
-		push_error("错误：AnimatedSprite2D 节点未找到！请检查场景树。")
+		push_error("错误。")
 		return
-	print("动画精灵初始化成功，路径:", animated_sprite.get_path())
+	print("动画初始化成功", animated_sprite.get_path())
 
 func _physics_process(delta: float) -> void:
 	var input_direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
