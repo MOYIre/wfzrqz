@@ -1,5 +1,6 @@
 extends Node2D
 @onready var dialog_box : Control = get_node("DialogBox")
+@onready var player : Node2D = $Player  # 获取玩家节点
 
 # 物品类型枚举
 enum ItemType {
@@ -48,11 +49,19 @@ enum TerrainType {
 
 # 创建并初始化 FastNoiseLite 噪声对象
 var noise : FastNoiseLite
+var noise_seed : int  # 用于保存噪声生成的种子
 
 # 初始化噪声设置
 func _ready():
+	# 加载之前的游戏状态
+	load_game_state()
+
+	# 如果没有加载到种子，则生成一个新的种子
+	if noise_seed == null:
+		noise_seed = randi()
+
 	noise = FastNoiseLite.new()
-	noise.seed = randi()  # 随机种子
+	noise.seed = noise_seed  # 使用加载的种子
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN  # 使用 Perlin 噪声
 	noise.fractal_type = FastNoiseLite.FRACTAL_FBM  # 使用 FBM 分形
 	noise.frequency = 0.05  # 设置频率
@@ -168,8 +177,52 @@ func update_map():
 	for chunk_key in to_remove:
 		chunks.erase(chunk_key)
 
+# 保存游戏状态
+func save_game_state():
+	var game_data = {}
+	game_data["player_position"] = player.position
+	game_data["noise_seed"] = noise_seed  # 保存噪声种子
+	game_data["chunks"] = []  # 存储生成的区块信息
+
+	# 保存每个区块的位置信息
+	for chunk_key in chunks.keys():
+		# 保存 Vector2 的 x 和 y，而不是直接保存 Vector2
+		game_data["chunks"].append({"x": chunk_key.x, "y": chunk_key.y})
+
+	# 使用 JSON 类来序列化数据
+	var json = JSON.new()
+	var json_string = json.print(game_data)  # 将字典转换为 JSON 字符串
+
+	# 保存到文件
+	var file = FileAccess.open("user://save_game.json", FileAccess.WRITE)  # 使用 FileAccess.WRITE
+	file.store_string(json_string)  # 将 JSON 字符串写入文件
+	file.close()
+
+# 加载游戏状态
+func load_game_state():
+	var file = FileAccess.open("user://save_game.json", FileAccess.READ)  # 打开文件
+	if file:
+		var json = JSON.new()
+		var game_data = json.parse(file.get_as_text())  # 解析 JSON 字符串
+		if game_data.error == OK:
+			game_data = game_data.result
+			if game_data.has("player_position"):
+				player_position = game_data["player_position"]
+				player.position = player_position  # 恢复玩家位置
+			if game_data.has("noise_seed"):
+				noise_seed = game_data["noise_seed"]  # 恢复噪声种子
+			if game_data.has("chunks"):
+				# 恢复已生成的区块
+				for chunk_info in game_data["chunks"]:
+					var chunk_pos = Vector2(chunk_info["x"], chunk_info["y"])
+					if not chunks.has(chunk_pos):
+						var chunk = generate_chunk(chunk_pos.x, chunk_pos.y)
+						chunks[chunk_pos] = chunk
+						add_child(chunk)
+
+		file.close()
+
 # 每帧更新地图
 func _process(_delta):
-	player_position = $Player.position  # 获取玩家位置
+	player_position = player.position  # 获取玩家位置
 	update_map()  # 更新地图
-	$Player.z_index = 1  # 确保玩家位于图块之上

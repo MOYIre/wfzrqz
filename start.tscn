@@ -37,3 +37,11 @@ script = ExtResource("3_4a3qj")
 follow_mode = 1
 follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_q6a3c")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(74, 99)
+color = Color(0.814065, 0.865855, 0.590133, 1)
+energy = 0.19
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 8.0
