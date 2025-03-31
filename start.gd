@@ -66,6 +66,33 @@ func _ready():
 	noise.fractal_type = FastNoiseLite.FRACTAL_FBM  # 使用 FBM 分形
 	noise.frequency = 0.05  # 设置频率
 
+# 定义结构类型
+enum StructureType {
+	HOUSE,
+	BRIDGE
+}
+
+# 结构类
+class Structure:
+	var structure_type: int  # 直接使用 int 类型，枚举实际上就是整数
+	var position: Vector2
+	var sprite: Sprite2D
+
+	# 构造函数，直接接收整数值（对应枚举）
+	func _init(new_structure_type: int, new_position: Vector2):
+		self.structure_type = new_structure_type  # 直接赋值，不需要调用函数
+		self.position = new_position
+		self.sprite = Sprite2D.new()
+
+		# 根据结构类型加载纹理
+		match self.structure_type:
+			StructureType.HOUSE:
+				self.sprite.texture = load("res://Res/regions/gfx/house.png")
+			StructureType.BRIDGE:
+				self.sprite.texture = load("res://Res/regions/gfx/bridge.png")
+
+		self.sprite.position = new_position
+
 # 生成区块
 func generate_chunk(x, y):
 	var chunk = Node2D.new()
@@ -103,6 +130,8 @@ func generate_chunk(x, y):
 			if terrain_type == TerrainType.GRASS and randf() < 0.01:  # 1%的概率生成矿石
 				spawn_item(chunk, i, j)  # 在该位置放置矿石
 
+
+
 	# 返回生成的区块
 	return chunk
 
@@ -111,17 +140,17 @@ func add_mountain_collision(i: int, j: int, chunk: Node2D):
 	var static_body = StaticBody2D.new()
 	var collision_shape = CollisionShape2D.new()
 	var shape = RectangleShape2D.new()
-	
+
 	# 设置碰撞体的尺寸，这里直接设置宽高为图块的大小
 	shape.extents = Vector2(tile_size / 2.0, tile_size / 2.0)  # 保证碰撞体的大小是图块的一半
-	
+
 	# 确保碰撞体的中心点对齐到图块的左上角
 	collision_shape.shape = shape
 	static_body.add_child(collision_shape)
-	
+
 	# 设置碰撞体的位置使其和图块对齐
 	static_body.position = Vector2(i * tile_size + tile_size / 2.0, j * tile_size + tile_size / 2.0)  # 调整为图块的中心点
-	
+
 	chunk.add_child(static_body)  # 将碰撞体添加到区块
 
 # 随机生成矿石
