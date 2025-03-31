@@ -1,15 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2tf4euxwmail"]
+[gd_scene load_steps=3 format=3 uid="uid://d2tf4euxwmail"]
 
 [ext_resource type="Script" uid="uid://b82k7drk0ndnj" path="res://start.gd" id="1_4a3qj"]
-[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_4a3qj"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_g38d0"]
 [ext_resource type="PackedScene" uid="uid://ukbaer65kjy8" path="res://player.tscn" id="5_oiuna"]
-
-[sub_resource type="Resource" id="Resource_q6a3c"]
-script = ExtResource("4_g38d0")
-duration = 1.0
-transition = 0
-ease = 2
 
 [node name="MapGenerator" type="Node2D"]
 script = ExtResource("1_4a3qj")
@@ -18,15 +10,6 @@ script = ExtResource("1_4a3qj")
 
 [node name="Player" parent="." instance=ExtResource("5_oiuna")]
 position = Vector2(164, 92)
-
-[node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
-top_level = true
-position = Vector2(164, 92)
-script = ExtResource("3_4a3qj")
-follow_mode = 1
-follow_target = NodePath("../Player")
-tween_resource = SubResource("Resource_q6a3c")
-draw_limits = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(74, 99)

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="未缚之壤前传"
+config/name="未缚之壤:前言"
 config/version="beta"
 run/main_scene="uid://d2tf4euxwmail"
 config/features=PackedStringArray("4.4", "Mobile")
@@ -23,9 +23,8 @@ PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_came
 
 [display]
 
-window/size/viewport_width=327
-window/size/viewport_height=184
-window/size/mode=3
+window/size/viewport_width=1440
+window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/scale=5.0
 

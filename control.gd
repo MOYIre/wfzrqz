@@ -3,7 +3,6 @@ extends CharacterBody2D
 @export var speed: float = 150.0
 @export var turn_smoothness: float = 20.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var backpack_ui = get_node("/root/BackpackUI")  # 获取背包UI
 
 var _target_direction := Vector2.ZERO
 var _current_direction := Vector2.ZERO
@@ -98,3 +97,7 @@ func _physics_process(delta: float) -> void:
 	if not is_moving and click_indicator != null:
 		click_indicator.queue_free()  # 移除指示器
 		click_indicator = null  # 清空指示器引用
+
+
+func _on_break_button_pressed() -> void:
+	pass # Replace with function body.
