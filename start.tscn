@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2tf4euxwmail"]
+[gd_scene load_steps=6 format=3 uid="uid://d2tf4euxwmail"]
 
 [ext_resource type="Script" uid="uid://b82k7drk0ndnj" path="res://start.gd" id="1_4a3qj"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_oiuna"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_4a3qj"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_g38d0"]
 [ext_resource type="PackedScene" uid="uid://ukbaer65kjy8" path="res://player.tscn" id="5_oiuna"]
@@ -17,16 +16,6 @@ script = ExtResource("1_4a3qj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
-position = Vector2(164, 92)
-limit_smoothed = true
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("2_oiuna")
-
 [node name="Player" parent="." instance=ExtResource("5_oiuna")]
 position = Vector2(164, 92)
 
@@ -37,6 +26,7 @@ script = ExtResource("3_4a3qj")
 follow_mode = 1
 follow_target = NodePath("../Player")
 tween_resource = SubResource("Resource_q6a3c")
+draw_limits = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(74, 99)
