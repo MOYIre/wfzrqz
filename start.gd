@@ -128,7 +128,7 @@ func add_mountain_collision(i: int, j: int, chunk: Node2D):
 func spawn_item(chunk: Node2D, x: int, y: int):
 	var item_type = ItemType.MINERAL  # 只生成矿石
 	var item = Item.new(item_type, Vector2(x * tile_size + tile_size / 2.0, y * tile_size + tile_size / 2.0))
-	item.sprite.scale = Vector2(0.03, 0.03)  # 缩小矿石的显示大小
+	item.sprite.scale = Vector2(0.025, 0.025)  # 缩小矿石的显示大小
 	chunk.add_child(item.sprite)  # 将矿石添加到区块中
 
 # 根据噪声值决定地形类型
